@@ -8,13 +8,14 @@ All downloads will be encrypted and secured through a VPN, to prevent any prying
 
 ## Description of media server and services
 
-* Plex - This will serve the audio and video files. Plex has client apps for nearly any device on which you would want to play media.
+* [Plex](https://plex.tv) - This will serve the audio and video files. Plex has client apps for nearly any device on which you would want to play media.
 * OpenVPN client container - This container will supply the secure tunnel for encrypted downloads. It will hide your traffic from prying eyes.
-* SABnzbd - Usenet file downloader.
-* Prowlarr - Usenet index manager. This keeps the indexers in sync, across all services.
-* Sonarr - TV show management. Sonarr actively searches the indexes for new and existing shows of your choice.
-* Radarr - Movie management. Radarr actively searches the index for new and existing movies of your choice. 
-* Lidarr - Music management. Lidarr actively searches the indexes for new and existing music of your choice.
+* [SABnzbd](https://sabnzbd.org) - Usenet file downloader.
+* [Prowlarr](https://github.com/Prowlarr/Prowlarr) - Usenet index manager. This keeps the indexers in sync, across all services.
+* [Sonarr](https://sonarr.tv) - TV show management. Sonarr actively searches the indexes for new and existing shows of your choice.
+* [Radarr](https://radarr.video) - Movie management. Radarr actively searches the index for new and existing movies of your choice. 
+* [Lidarr](https://lidarr.audio) - Music management. Lidarr actively searches the indexes for new and existing music of your choice.
+* [Overseerr](https://overseerr.dev) - Movie and TV Show request management. Simple and beautiful way to request new media from one location.
 
 For additional documentation and details on the *arr services, see [https://wiki.servarr.com](https://wiki.servarr.com).
 
