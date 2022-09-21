@@ -1,0 +1,95 @@
+version: '3.7'
+
+services:
+  plex:
+    image: plexinc/pms-docker
+    restart: unless-stopped
+    container_name: plex
+    env_file:
+      - .env
+    network_mode: host
+    volumes:
+      - ./plex/config:/config
+      - ./plex/transcode:/transcode
+      - ${MEDIA}:/data
+  openvpn-client:
+    image: ghcr.io/wfg/openvpn-client
+    container_name: openvpn-client
+    ports:
+      - 9696:9696
+      - 8686:8686
+      - 8989:8989
+      - 8080:8080
+      - 7878:7878
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    volumes:
+      - ./vpn:/data/vpn
+    restart: unless-stopped
+    env_file:
+      - .env
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:develop
+    container_name: prowlarr
+    volumes:
+      - ./prowlarr:/config
+    restart: unless-stopped
+    env_file:
+      - .env
+    network_mode: service:openvpn-client
+    depends_on:
+      - openvpn-client
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    volumes:
+      - ./lidarr:/config
+      - ${MEDIA}/Music:/music
+      - ${DOWNLOADS}:/downloads
+    restart: unless-stopped
+    env_file:
+      - .env
+    network_mode: service:openvpn-client
+    depends_on:
+      - openvpn-client
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    volumes:
+      - ./sonarr:/config
+      - ${MEDIA}/TV:/tv
+      - ${DOWNLOADS}:/downloads
+    restart: unless-stopped
+    env_file:
+      - .env
+    network_mode: service:openvpn-client
+    depends_on:
+      - openvpn-client
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd:latest
+    container_name: sabnzbd
+    volumes:
+      - ./sabnzbd:/config
+      - ${DOWNLOADS}:/downloads
+      - ${DOWNLOADS}/incomplete:/incomplete-downloads
+    restart: unless-stopped
+    env_file:
+      - .env
+    network_mode: service:openvpn-client
+    depends_on:
+      - openvpn-client
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    volumes:
+      - ./radarr:/config
+      - ${MEDIA}/Movies:/movies
+      - ${DOWNLOADS}:/downloads
+    env_file:
+      - .env
+    restart: unless-stopped
+    network_mode: service:openvpn-client
+    depends_on:
+      - openvpn-client
