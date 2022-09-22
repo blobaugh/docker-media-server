@@ -105,3 +105,15 @@ services:
     network_mode: service:openvpn-client
     depends_on:
       - openvpn-client
+  tautulli:
+    image: lscr.io/linuxserver/tautulli:latest
+    container_name: tautulli
+    env_file:
+      - .env
+    volumes:
+      - ./tautulli:/config
+    ports:
+      - 8181:8181
+    restart: unless-stopped  
+    depends_on:
+      - plex

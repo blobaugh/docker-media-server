@@ -16,6 +16,7 @@ All downloads will be encrypted and secured through a VPN, to prevent any prying
 * [Radarr](https://radarr.video) - Movie management. Radarr actively searches the index for new and existing movies of your choice. 
 * [Lidarr](https://lidarr.audio) - Music management. Lidarr actively searches the indexes for new and existing music of your choice.
 * [Overseerr](https://overseerr.dev) - Movie and TV Show request management. Simple and beautiful way to request new media from one location.
+* [Tautulli](https://tautulli.com) - Tautulli is a 3rd party application that you can run alongside your Plex Media Server to monitor activity and track various statistics. 
 
 For additional documentation and details on the *arr services, see [https://wiki.servarr.com](https://wiki.servarr.com).
 
